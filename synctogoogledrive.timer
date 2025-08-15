@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Google Drive Folder Sync every 2 minutes
+Requires=synctogoogledrive.service
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=2min
+Unit=synctogoogledrive.service
+
+[Install]
+WantedBy=timers.target

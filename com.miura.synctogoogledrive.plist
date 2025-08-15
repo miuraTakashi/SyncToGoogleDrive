@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.miura.synctogoogledrive</string>
+    
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/miura/_git/SyncToGoogleDrive/share_folder_to_google_drive.py</string>
+        <string>--folder</string>
+        <string>/path/to/your/folder</string>
+        <string>--email</string>
+        <string>user@example.com</string>
+        <string>--role</string>
+        <string>writer</string>
+    </array>
+    
+    <key>StartInterval</key>
+    <integer>120</integer>
+    
+    <key>WorkingDirectory</key>
+    <string>/Users/miura/_git/SyncToGoogleDrive</string>
+    
+    <key>StandardOutPath</key>
+    <string>/Users/miura/_git/SyncToGoogleDrive/launchd.log</string>
+    
+    <key>StandardErrorPath</key>
+    <string>/Users/miura/_git/SyncToGoogleDrive/launchd_error.log</string>
+    
+    <key>RunAtLoad</key>
+    <true/>
+    
+    <key>KeepAlive</key>
+    <false/>
+    
+    <key>ProcessType</key>
+    <string>Background</string>
+</dict>
+</plist>

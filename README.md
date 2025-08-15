@@ -103,6 +103,56 @@ python share_folder_to_google_drive.py --folder ~/Documents/Project --email team
 - 共有先のメールアドレスが正しいか確認
 - 共有先のユーザーがGoogleアカウントを持っているか確認
 
+## Raspberry Piでの自動実行設定
+
+### 方法1: cronを使用（推奨）
+
+最も簡単で確実な方法です。
+
+```bash
+# セットアップスクリプトを実行
+./setup_raspberry_pi.sh
+
+# または、手動でcronを設定
+python3 setup_cron.py --folder /path/to/folder --email user@example.com --interval 2
+```
+
+### 方法2: systemdを使用
+
+より高度な制御が必要な場合。
+
+```bash
+# セットアップスクリプトを実行
+./setup_raspberry_pi.sh
+
+# 手動で設定する場合
+sudo cp synctogoogledrive.service /etc/systemd/system/
+sudo cp synctogoogledrive.timer /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable synctogoogledrive.timer
+sudo systemctl start synctogoogledrive.timer
+```
+
+### 設定の確認
+
+```bash
+# cronジョブの確認
+crontab -l
+
+# systemdタイマーの状態確認
+sudo systemctl status synctogoogledrive.timer
+
+# ログの確認
+tail -f *.log
+```
+
+### 注意事項
+
+- Raspberry Pi OS（Raspbian）での動作を確認済み
+- 初回実行時はGoogle Drive APIの認証が必要
+- ログファイルは自動的にローテーションされます
+- ネットワーク接続が必要です
+
 ## ライセンス
 
 このスクリプトはMITライセンスの下で提供されています。

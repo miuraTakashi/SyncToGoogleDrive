@@ -1,0 +1,14 @@
+[Unit]
+Description=Google Drive Folder Sync Service
+After=network.target
+
+[Service]
+Type=oneshot
+User=pi
+WorkingDirectory=/home/pi/SyncToGoogleDrive
+ExecStart=/usr/bin/python3 /home/pi/SyncToGoogleDrive/share_folder_to_google_drive.py --folder /path/to/your/folder --email user@example.com --role writer
+StandardOutput=append:/home/pi/SyncToGoogleDrive/service.log
+StandardError=append:/home/pi/SyncToGoogleDrive/service_error.log
+
+[Install]
+WantedBy=multi-user.target
