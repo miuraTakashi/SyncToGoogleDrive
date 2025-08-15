@@ -103,6 +103,39 @@ python share_folder_to_google_drive.py --folder ~/Documents/Project --email team
 - 共有先のメールアドレスが正しいか確認
 - 共有先のユーザーがGoogleアカウントを持っているか確認
 
+## 既存のGoogle Drive共有フォルダを利用する
+
+### 共有フォルダのIDを取得
+
+1. Google Driveで共有フォルダを開く
+2. URLからフォルダIDを確認：
+   ```
+   https://drive.google.com/drive/folders/FOLDER_ID_HERE
+   ```
+
+### 共有フォルダの内容をダウンロード
+
+```bash
+# フォルダの内容を一覧表示
+python3 download_shared_folder.py --folder-id FOLDER_ID --list-only
+
+# フォルダ全体をダウンロード
+python3 download_shared_folder.py --folder-id FOLDER_ID --output ./downloaded_folder
+```
+
+### 共有フォルダの自動同期
+
+```bash
+# 一度だけ同期
+python3 sync_shared_folder.py --folder-id FOLDER_ID --local-path ./synced_folder --once
+
+# 継続的に監視（5分間隔）
+python3 sync_shared_folder.py --folder-id FOLDER_ID --local-path ./synced_folder --interval 300
+
+# 2分間隔で監視
+python3 sync_shared_folder.py --folder-id FOLDER_ID --local-path ./synced_folder --interval 120
+```
+
 ## Raspberry Piでの自動実行設定
 
 ### 方法1: cronを使用（推奨）
